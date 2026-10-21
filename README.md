@@ -1,8 +1,8 @@
-# irix-extension-template
+﻿# irix-extension-template
 
 **中文** | [English](README.en.md) | [日本語](README.ja.md)
 
-**iRix Audio Player 扩展模板** —— 复制这个仓库，快速写一个「容器 → 可播放音频」的插件。
+**iRix Audio Player 扩展模板** —— 复制这个仓库，快速写一个"容器 → 可播放音频"的插件。
 
 - 主项目：[sakihanaraku/irix-audio-player](https://github.com/sakihanaraku/irix-audio-player)
 - 插件开发/投稿指南：[EXTENSIONS.md](https://github.com/sakihanaraku/irix-audio-player/blob/main/EXTENSIONS.md)
@@ -26,7 +26,7 @@
 - 读取标题 / 艺术家 / 专辑 / 时长（毫秒）；
 - `readMeta()` 快速路径：加入播放列表时只读元数据，不解码整首；
 - 声明式设置：设置里生成一个开关（未知格式时放行）；
-- 命令按钮：设置里的「测试命令」返回插件版本；
+- 命令按钮：设置里的"测试命令"返回插件版本；
 - 元数据损坏时仍然能播放。
 
 ## 快速试跑
