@@ -1,91 +1,94 @@
 # irix-extension-template
 
-**中文** | [English](README.en.md) | [日本語](README.ja.md)
+[中文](README.zh.md) | **English** | [日本語](README.ja.md)
 
-**iRix Audio Player 扩展模板** —— 复制这个仓库，快速写一个"容器 → 可播放音频"的插件。
+**Extension template for iRix Audio Player** — copy this repository to quickly build a
+"container → playable audio" extension.
 
-- 主项目：[sakihanaraku/irix-audio-player](https://github.com/sakihanaraku/irix-audio-player)
-- 插件开发/投稿指南：[EXTENSIONS.md](https://github.com/sakihanaraku/irix-audio-player/blob/main/EXTENSIONS.md)
+- Main project: [sakihanaraku/irix-audio-player](https://github.com/sakihanaraku/irix-audio-player)
+- Extension authoring guide: [EXTENSIONS.md](https://github.com/sakihanaraku/irix-audio-player/blob/main/EXTENSIONS.md)
 
-模板演示当前扩展接口：`decode` / `readMeta` / `extractCover` / `processAudio` /
-`activate` / `deactivate` / `onSettingsChanged` / `commands`，以及清单里的
-声明式 `settings` 和 `commands`。
+This template demonstrates the current extension interfaces: `decode` / `readMeta` /
+`extractCover` / `processAudio` / `activate` / `deactivate` / `onSettingsChanged` /
+`commands`, plus declarative `settings` and `commands` in the manifest.
 
-## 它能做什么
+## What it does
 
-示例容器 `.hello` 包住一段原始音频：
+The sample container `.hello` wraps a piece of raw audio:
 
 ```
-[0, 8) "HELLOXTS" | [8,12) 元数据 JSON 长度 N | [12,12+N) JSON | [12+N,...) 音频
+[0, 8) "HELLOXTS" | [8,12) metadata JSON length N | [12,12+N) JSON | [12+N,...) audio
 ```
 
-模板会：
+The template:
 
-- 认识 `.hello` 后缀（安装并重启后，文件浏览器里可见）；
-- 从容器里取出原始音频（FLAC/MP3/WAV/OGG/M4A/AAC）；
-- 读取标题 / 艺术家 / 专辑 / 时长（毫秒）；
-- `readMeta()` 快速路径：加入播放列表时只读元数据，不解码整首；
-- 声明式设置：设置里生成一个开关（未知格式时放行）；
-- 命令按钮：设置里的"测试命令"返回插件版本；
-- 元数据损坏时仍然能播放。
+- recognizes the `.hello` suffix (visible in the file browser after install + restart);
+- extracts the original audio (FLAC/MP3/WAV/OGG/M4A/AAC);
+- reads title / artist / album / duration (milliseconds);
+- `readMeta()` fast path: adding to the playlist only reads metadata, no full decode;
+- declarative settings: one boolean switch (pass through unknown headers);
+- command button: "test command" returns the extension version;
+- still plays when metadata is corrupted.
 
-## 快速试跑
+## Quick start
 
 ```bash
-# 1) 任意找一个音频文件，包成 .hello
-node make-sample.mjs input.flac song.hello "测试歌曲" "测试艺术家" "测试专辑" 195000
+# 1) wrap any audio file into .hello
+node make-sample.mjs input.flac song.hello "Test Song" "Test Artist" "Test Album" 195000
 
-# 2) 打包（在模板目录内执行）
+# 2) package (run inside the template directory)
 tar -cf iRix-Extension-irix-extension-template-1.0.0.xtxs .
 # Windows PowerShell: tar -cf iRix-Extension-irix-extension-template-1.0.0.xtxs .
 
-# 3) 应用 → 设置 → 扩展 → 安装扩展… → 选 .xtxs → 重启应用
+# 3) App → Settings → Extensions → Install extension… → pick the .xtxs → restart
 ```
 
-不需要启动播放器的自测：
+Self-test without launching the player:
 
 ```bash
 node self-test.mjs
-# 或 npm test
+# or npm test
 ```
 
-## 改成你自己的插件
+## Make it your own
 
-1. 复制整个目录/仓库，改名为你的插件 id（小写字母/数字/`.-_`）；
-2. 改 `extension.json`：`id` / `name` / `version` / `description` / `author` / `extensions`，
-   以及你的 `settings` / `commands`；
-3. 改 `index.js`：`MAGIC`、解析逻辑、`match` 正则、`module.exports.id`；
-4. 按主项目的 `EXTENSIONS.md` 做 Node 单测 + 应用内真实播放/设置/命令；
-5. 向主项目 `extensions/community/<id>/` 提 Pull Request（同时更新 `CATALOG.md`）。
+1. Copy the whole directory/repository and rename it to your extension id
+   (lowercase letters/digits/`.` `-` `_`);
+2. Edit `extension.json`: `id` / `name` / `version` / `description` / `author` / `extensions`,
+   plus your own `settings` / `commands`;
+3. Edit `index.js`: `MAGIC`, parsing logic, `match` regexp, `module.exports.id`;
+4. Follow the main project's `EXTENSIONS.md` for Node unit tests + real playback/settings/commands;
+5. Open a Pull Request against `extensions/community/<id>/` in the main project (update `CATALOG.md` too).
 
-## 接口演示
+## Interface demo
 
-| 接口 | 模板里的用途 |
+| Interface | Use in this template |
 |---|---|
-| `activate(ctx)` | 读取 `ctx.settings`、打印日志 |
-| `onSettingsChanged(values)` | 用户改设置后即时更新内部缓存 |
-| `deactivate()` | 占位：释放资源（本模板没有资源） |
-| `commands.ping` | 返回 `irix-extension-template v<version> OK` |
-| `readMeta(buffer)` | 加入列表快速路径（只读元数据） |
-| `decode(buffer)` | 真正的容器解码 |
-| `extractCover()` | 示例返回 null（自己的格式有封面可返回 Buffer） |
-| `processAudio(data)` | 示例原样返回（文件级后处理，不是实时 DSP） |
+| `activate(ctx)` | read `ctx.settings`, write a log line |
+| `onSettingsChanged(values)` | update the internal settings cache immediately |
+| `deactivate()` | placeholder: release resources (none here) |
+| `commands.ping` | returns `irix-extension-template v<version> OK` |
+| `readMeta(buffer)` | playlist fast path (metadata only) |
+| `decode(buffer)` | the actual container decode |
+| `extractCover()` | returns null in this sample (return a Buffer if your format has cover art) |
+| `processAudio(data)` | returns data unchanged (file-level post-processing, not real-time DSP) |
 | `match` | `/\.hello$/i` |
 
-## 接口提醒
+## Notes
 
-- `decode()` / `readMeta()` / `extractCover()` / `processAudio()` **必须同步返回**（播放器不会 `await`）；
-- `meta.duration` 单位是**毫秒**；
-- `cover` 只接受 JPEG/PNG Buffer；
-- 坏文件必须抛错，不能越界/死循环；
-- 插件运行在主进程，拥有完整 Node 权限 —— 只写你自己需要的逻辑；
-- `settings` / `commands` 只是**声明式界面**，不隔离权限。
+- `decode()` / `readMeta()` / `extractCover()` / `processAudio()` **must return synchronously**
+  (the player does not `await` them);
+- `meta.duration` is in **milliseconds**;
+- `cover` must be a JPEG/PNG Buffer;
+- invalid files must throw readable errors, never over-allocate or loop forever;
+- extensions run in the main process with full Node privileges — only implement what you need;
+- `settings` / `commands` are **declarative UI only** and do not sandbox the extension.
 
-## 已知限制（模板自身）
+## Known limitations (of this template)
 
-- 只支持示例 `.hello` 格式，没有真实生态；
-- 不解析封面（可参考接口自行加 `cover` / `extractCover`）；
-- 没有加密/签名，仅作教学用途。
+- only supports the sample `.hello` format; it is not a real ecosystem;
+- no cover parsing (see `cover` / `extractCover` if you need it);
+- no encryption/signature; teaching purposes only.
 
 ## License
 

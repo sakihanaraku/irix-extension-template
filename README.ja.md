@@ -1,12 +1,12 @@
 # irix-extension-template
 
-[中文](README.md) | [English](README.en.md) | **日本語**
+[中文](README.zh.md) | [English](README.md) | **日本語**
 
 **iRix Audio Player 拡張テンプレート** —— このリポジトリをコピーして、
 「コンテナ → 再生可能な音声」に変換するプラグインをすぐ作れます。
 
 - メインプロジェクト：[sakihanaraku/irix-audio-player](https://github.com/sakihanaraku/irix-audio-player)
-- 拡張機能の作成/投稿ガイド：[EXTENSIONS.md](https://github.com/sakihanaraku/irix-audio-player/blob/main/EXTENSIONS.md)
+- 拡張機能の作成/投稿ガイド：[EXTENSIONS.ja.md](https://github.com/sakihanaraku/irix-audio-player/blob/main/EXTENSIONS.ja.md)
 
 このテンプレートは現在の拡張インターフェースを一通り実演します：
 `decode` / `readMeta` / `extractCover` / `processAudio` / `activate` / `deactivate` /
@@ -57,7 +57,7 @@ node self-test.mjs
 2. `extension.json` を変更：`id` / `name` / `version` / `description` / `author` / `extensions`、
    および自分の `settings` / `commands`；
 3. `index.js` を変更：`MAGIC`、解析ロジック、`match` 正規表現、`module.exports.id`；
-4. メインプロジェクトの `EXTENSIONS.md` に従って Node 単体テスト + アプリ内で実際の再生/設定/コマンドを確認；
+4. メインプロジェクトの `EXTENSIONS.ja.md` に従って Node 単体テスト + アプリ内で実際の再生/設定/コマンドを確認；
 5. メインプロジェクトの `extensions/community/<id>/` に Pull Request を送る（`CATALOG.md` も更新）。
 
 ## インターフェース例
