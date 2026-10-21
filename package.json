@@ -1,0 +1,19 @@
+{
+  "name": "irix-extension-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "iRix Audio Player 扩展模板：示例容器 .hello → 可播放音频",
+  "license": "MIT",
+  "author": "sakihanaraku",
+  "homepage": "https://github.com/sakihanaraku/irix-extension-template",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sakihanaraku/irix-extension-template.git"
+  },
+  "keywords": ["irix-audio-player", "extension", "xtxs", "template"],
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node self-test.mjs",
+    "sample": "node make-sample.mjs"
+  }
+}

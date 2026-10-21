@@ -1,0 +1,5 @@
+node_modules/
+*.xtxs
+dist/
+.DS_Store
+Thumbs.db

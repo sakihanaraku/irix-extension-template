@@ -1,0 +1,28 @@
+{
+  "id": "irix-extension-template",
+  "name": "Irix Extension Template",
+  "version": "1.0.0",
+  "description": "iRix Audio Player 扩展模板：示例容器 .hello → 可播放音频，包含 decode/readMeta/extractCover/processAudio/生命周期/声明式设置/命令的完整写法。",
+  "entry": "index.js",
+  "extensions": ["hello"],
+  "minAppVersion": "1.0.2-fix",
+  "author": "sakihanaraku",
+  "homepage": "https://github.com/sakihanaraku/irix-extension-template",
+  "license": "MIT",
+  "settings": [
+    {
+      "key": "passthroughUnknown",
+      "type": "boolean",
+      "label": "未知音频头时原样放行",
+      "default": false,
+      "description": "识别不出真实格式时，不返回音频而是 passthrough（交给播放器原文件处理）"
+    }
+  ],
+  "commands": [
+    {
+      "id": "ping",
+      "label": "测试命令",
+      "description": "返回插件 id/版本，验证命令接口是否接通"
+    }
+  ]
+}
