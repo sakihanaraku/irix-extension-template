@@ -58,7 +58,7 @@ node self-test.mjs
    および自分の `settings` / `commands`；
 3. `index.js` を変更：`MAGIC`、解析ロジック、`match` 正規表現、`module.exports.id`；
 4. メインプロジェクトの `EXTENSIONS.md` に従って Node 単体テスト + アプリ内で実際の再生/設定/コマンドを確認；
-5. メインプロジェクトの `extensions/community/<id>/` に PR を送る（`CATALOG.md` も更新）。
+5. メインプロジェクトの `extensions/community/<id>/` に Pull Request を送る（`CATALOG.md` も更新）。
 
 ## インターフェース例
 

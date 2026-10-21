@@ -58,7 +58,7 @@ node self-test.mjs
    plus your own `settings` / `commands`;
 3. Edit `index.js`: `MAGIC`, parsing logic, `match` regexp, `module.exports.id`;
 4. Follow the main project's `EXTENSIONS.md` for Node unit tests + real playback/settings/commands;
-5. Open a PR against `extensions/community/<id>/` in the main project (update `CATALOG.md` too).
+5. Open a Pull Request against `extensions/community/<id>/` in the main project (update `CATALOG.md` too).
 
 ## Interface demo
 

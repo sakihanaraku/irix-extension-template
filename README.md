@@ -1,4 +1,4 @@
-﻿# irix-extension-template
+# irix-extension-template
 
 **中文** | [English](README.en.md) | [日本語](README.ja.md)
 
@@ -56,7 +56,7 @@ node self-test.mjs
    以及你的 `settings` / `commands`；
 3. 改 `index.js`：`MAGIC`、解析逻辑、`match` 正则、`module.exports.id`；
 4. 按主项目的 `EXTENSIONS.md` 做 Node 单测 + 应用内真实播放/设置/命令；
-5. 向主项目 `extensions/community/<id>/` 提 PR（同时更新 `CATALOG.md`）。
+5. 向主项目 `extensions/community/<id>/` 提 Pull Request（同时更新 `CATALOG.md`）。
 
 ## 接口演示
 
